@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login To Facility</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f3f7;
+}
+
+/* Top Navbar */
+.navbar {
+    background: #2e4c8f;
+    color: white;
+    padding: 14px 30px;
+    display: flex;
+    gap: 30px;
+}
+
+/* Page Layout */
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 15px;
+}
+
+/* Card */
+.card {
+    background: white;
+    width: 520px;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+h2 {
+    margin-top: 0;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.required {
+    color: red;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Password Toggle */
+.password-wrapper {
+    position: relative;
+}
+
+.toggle {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Captcha */
+.captcha-box {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    background: #fafafa;
+}
+
+.captcha-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.captcha-text {
+    font-size: 22px;
+    font-weight: bold;
+    color: #5c2ca1;
+    min-width: 90px;
+}
+
+.captcha-input {
+    flex: 1;
+}
+
+.icon-btn {
+    cursor: pointer;
+    font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Top bar -->
+<div class="navbar">
+    <div>Resource Center ▼</div>
+    <div>Support ▼</div>
+</div>
+
+<div class="container">
+<div class="card">
+
+<h2>Login To Facility</h2>
+
+<!-- Facility ID -->
+<div class="form-group">
+<label>Facility ID <span class="required">*</span></label>
+<input placeholder="Enter facility Id">
+</div>
+
+<!-- Password -->
+<div class="form-group">
+<label>Password <span class="required">*</span></label>
+
+<div class="password-wrapper">
+<input type="password" id="password" placeholder="Enter password">
+<span class="toggle" onclick="togglePassword()">👁</span>
+</div>
+</div>
+
+<!-- Captcha -->
+<div class="form-group captcha-box">
+<label>Captcha <span class="required">*</span></label>
+
+<div class="captcha-row">
+<div class="captcha-text" id="captcha"></div>
+
+<input class="captcha-input" placeholder="Enter answer">
+
+<span class="icon-btn" onclick="speakCaptcha()">🔊</span>
+<span class="icon-btn" onclick="generateCaptcha()">🔄</span>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+let num1, num2;
+
+function generateCaptcha() {
+    num1 = Math.floor(Math.random() * 9) + 1;
+    num2 = Math.floor(Math.random() * 9) + 1;
+    document.getElementById("captcha").innerText =
+        num1 + " + " + num2 + " = ?";
+}
+
+function togglePassword() {
+    let pwd = document.getElementById("password");
+    pwd.type = pwd.type === "password" ? "text" : "password";
+}
+
+function speakCaptcha() {
+    alert(`Captcha is ${num1} plus ${num2}`);
+}
+
+generateCaptcha();
+</script>
+
+</body>
+</html>
